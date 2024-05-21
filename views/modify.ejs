@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Notes</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="form-container">
+        <%if(locals.book===undefined){%>
+        <div class="container">    
+            <h2>Add a Book</h2>
+            <a href="/"><button>Home</button></a>
+        </div>
+        <form action="/" method="post">
+            <input type="hidden" name="action" value="new"/>
+            <input type="text" name="title" placeholder="Title of the book" required>
+            <input type="text" name="author" placeholder="Author" required>
+            <input type="number" name="isbn" placeholder="ISBN" required>
+            <input type="text" name="genre" placeholder="Genre" required>
+            <label for="rating">Rating: </label>
+            <div class="rating_modify">
+                <input type="radio" name="rating" id="star1" value="1"><label for="star1">&#9733;</label>
+                <input type="radio" name="rating" id="star2" value="2"><label for="star2">&#9733;</label>
+                <input type="radio" name="rating" id="star3" value="3"><label for="star3">&#9733;</label>
+                <input type="radio" name="rating" id="star4" value="4"><label for="star4">&#9733;</label>
+                <input type="radio" name="rating" id="star5" value="5"><label for="star5">&#9733;</label>
+            </div>
+            <textarea name="review" cols="30" rows="5" placeholder="Write your review..."></textarea>
+            <label for="date">Date: </label>
+            <input type="date" name="date" required>
+            <textarea name="notes" cols="30" rows="5" placeholder="Write your notes..."></textarea>
+            <div class="add">
+                <input type="submit" value="Add">
+            </div>
+        </form>
+        <%}else{%>
+            <div class="container">    
+                <h2>Edit a Book</h2>
+                <a href="/"><button>Home</button></a>
+            </div>
+        <form action="/" method="post">
+            <input type="hidden" name="action" value="exist"/>
+            <input type="hidden" name="requested_id" value ="<%=book.id%>" />
+            <input type="text" name="title" value="<%=book.title%>" placeholder="Title of the book" required>
+            <input type="text" name="author" value="<%=book.author%>" placeholder="Author" required>
+            <input type="number" name="isbn" value="<%=book.isbn%>" placeholder="ISBN" required>
+            <input type="text" name="genre" value="<%=book.genre%>" placeholder="Genre" required>
+            <label for="rating">Rating: </label>
+            <div class="rating_modify">
+                <input type="radio" name="rating" id="star1" value="1" <%= book.rating === 1 ? 'checked' : '' %>><label for="star1">&#9733;</label>
+                <input type="radio" name="rating" id="star2" value="2" <%= book.rating === 2 ? 'checked' : '' %>><label for="star2">&#9733;</label>
+                <input type="radio" name="rating" id="star3" value="3" <%= book.rating === 3 ? 'checked' : '' %>><label for="star3">&#9733;</label>
+                <input type="radio" name="rating" id="star4" value="4" <%= book.rating === 4 ? 'checked' : '' %>><label for="star4">&#9733;</label>
+                <input type="radio" name="rating" id="star5" value="5" <%= book.rating === 5 ? 'checked' : '' %>><label for="star5">&#9733;</label>
+            </div>
+            
+            <textarea name="review" cols="30" rows="5" placeholder="Write your review..."><%=book.review%></textarea>
+            <label for="date">Date: </label>
+            
+            <input type="date" value="<%=book.date%>" name="date" required>
+            <textarea name="notes" cols="30" rows="5"  placeholder="Write your notes..."><%=book.notes%></textarea>
+            <div class="add">
+                <input type="submit" value="Edit">
+            </div>
+        <%}%>
+    </div>
+
+    <script>
+    const starLabels = document.querySelectorAll(".rating_modify label");
+    const starInputs = document.querySelectorAll(".rating_modify input");
+
+    starInputs.forEach((input, index) => {
+        if (input.checked) {
+            resetStars();
+            highlightStars(index);
+        }
+    });
+
+    starLabels.forEach((star, index) => {
+        star.addEventListener('click', () => {
+            resetStars();
+            highlightStars(index);
+        });
+    });
+
+    function resetStars() {
+        starLabels.forEach((label) => {
+            label.style.color = '#ddd';
+        });
+    }
+
+    function highlightStars(index) {
+        for (let i = 0; i <= index; i++) {
+            starLabels[i].style.color = '#f39c12';
+        }
+    }
+
+    </script>
+</body>
+</html>

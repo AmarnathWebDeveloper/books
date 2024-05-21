@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=book.title%></title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .grid-container-1 {
+            margin-top: 20px;
+        }
+        form{
+            grid-column: span 2;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container-1">
+        <div class="imageHandler">
+            <img src ="<%=book.cover_image_url%>" alt="Book_Image" onerror="
+                this.onerror=null; 
+                this.style.display='none'; 
+                this.parentElement.querySelector('.bookDetails').style.display='block'; 
+                this.parentElement.style.border='2px solid black';
+            ">
+
+            <div class="bookDetails" style="display: none;">
+                    <h3><%=book.title%></h3>
+                    <p><small><%=book.author%></small></p>
+            </div>
+        </div>
+        <div>
+            <h2 style="margin-top:10px;"><%=book.title%></h2>
+            <p class="genre"><span class="spl">Genre: </span><%=book.genre%></p>
+            <%for(let i=0;i<book.rating;i++){%>
+                <p class="rating">&#9733;</p>
+            <% } %>
+            <p><span class="spl">Date of read: </span><%=book.date%></p>
+        </div> 
+        <pre class="highlighted"><%=book.notes%></pre>
+        <form action="/modify" method="post">
+            <input type="hidden" name="requested_id" value="<%= book.id %>"/>
+            <input type="submit" name="action" value="Home">
+            <input type="submit" name="action" value="Edit">
+        </form>
+    </div>       
+</body>
+</html>

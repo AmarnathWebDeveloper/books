@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshelf Manager</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <h1>Bookshelf Manager</h1>
+    <form id="filterForm" method="get" action="/">
+        <label for="ratingFilter">Filter by Rating:</label>
+        <select id="ratingFilter" name="ratingFilter">
+            <option value="all" <% if (ratingFilter === 'all') { %>selected<% } %>>All</option>
+            <option value="1" <% if (ratingFilter === '1') { %>selected<% } %>>1+</option>
+            <option value="2" <% if (ratingFilter === '2') { %>selected<% } %>>2+</option>
+            <option value="3" <% if (ratingFilter === '3') { %>selected<% } %>>3+</option>
+            <option value="4" <% if (ratingFilter === '4') { %>selected<% } %>>4+</option>
+        </select>
+        
+        <label for="recencyFilter">Filter by Recency:</label>
+        <select id="recencyFilter" name="recencyFilter">
+            <option value="all" <% if (recencyFilter === 'all') { %>selected<% } %>>All</option>
+            <option value="latest" <% if (recencyFilter === 'latest') { %>selected<% } %>>Latest</option>
+            <option value="oldest" <% if (recencyFilter === 'oldest') { %>selected<% } %>>Oldest</option>
+        </select>
+        
+        <input type="submit" value="Apply Filters">
+    </form>
+    
+    
+    <% books.forEach(book =>{ %>
+    <div class="grid-container-1">
+        <div class="imageHandler">
+            <img src ="<%=book.cover_image_url%>" alt="Book_Image" onerror="
+                this.onerror=null; 
+                this.style.display='none'; 
+                this.parentElement.querySelector('.bookDetails').style.display='block'; 
+                this.parentElement.style.border='2px solid black';
+            ">
+
+            <div class="bookDetails" style="display: none;">
+                    <h3><%=book.title%></h3>
+                    <p><small><%=book.author%></small></p>
+            </div>
+        </div>
+        <div>
+            <h2 style="margin-top:10px;"><%=book.title%></h2>
+            <p class="genre"><span class="spl">Genre: </span><%=book.genre%></p>
+            <%for(let i=0;i<book.rating;i++){%>
+                <p class="rating">&#9733;</p>
+            <% } %>
+            <p><%=book.review%></p>
+            <p><span class="spl">Date of read: </span><%=book.date%></p>
+            <div>
+                <form action="/notes" method="post">
+                    <input type="hidden" name="requested_id" value="<%= book.id %>"/>
+                    <input type="submit" value="Read Notes">
+                </form>
+                <form action="/modify" method="post">
+                    <input type="hidden" name="requested_id" value="<%= book.id %>"/>
+                    <input type="submit" name="action" value="Edit">
+                    <input type="submit" name="action" value="Delete">
+                </form>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+    <form action="/add" method="post">
+        <input type="Submit" value="Add Book"/>
+    </form>
+
+</body>
+</html>

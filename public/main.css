@@ -1,0 +1,180 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+.grid-container-1{
+    width:75%;
+    display: grid;
+    grid-template-columns: 225px auto;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+}
+img {
+    margin-right: 10px;
+}
+.spl {
+    font-size: 20px;
+    font-weight: bold;
+}
+.genre {
+    margin-bottom: 0;
+}
+p {
+    font-size: 18px;
+}
+.rating {
+    display: inline;
+    font-size: 30px;
+    color: #f39c12;
+}
+.imageHandler {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 300px;
+    margin-right: 20px;
+    border: none;
+}
+input[type="submit"] {
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}input[type="submit"]:hover {
+    background-color: #45a049;
+}select {
+    padding: 4px;
+    font-size: 16px;
+    border-radius: 5px;
+    }
+
+    option {
+        padding: 4px;
+        font-size: 16px;
+    }
+    #filterForm{
+        margin-bottom: 10px;
+    }
+    input[value='Add Book']{
+        margin-bottom: 20px;
+    }
+    pre.highlighted {
+        font-size: 18px;
+        white-space: pre-wrap;
+        background-color: #fff;
+        padding: 20px;
+        border: 2px solid #ddd; 
+        border-radius: 5px; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        grid-column: span 2; 
+        margin-top: 20px;
+    }
+    .form-container {
+        background: #fff;
+        padding: 20px 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 600px;
+        box-sizing: border-box;
+        margin: 20px auto;
+    }
+    .form-container h2 {
+        margin-bottom: 20px;
+        color: #333;
+        text-align: center;
+    }
+    .form-container input[type="text"],
+    .form-container input[type="number"],
+    .form-container input[type="date"],
+    .form-container textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+    .form-container input[type="date"] {
+        width: auto;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 15px;
+    }
+    
+    .form-container input[type="submit"],button {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        margin-bottom: 20px;
+    }
+    .form-container input[type="submit"],button:hover {
+        background-color: #218838;
+    }
+    .form-container label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+    .rating_modify {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 15px;
+    }
+    .rating_modify input {
+        display: none;
+    }
+    .rating_modify label {
+        font-size: 30px;
+        color: #ddd;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+    .rating_modify input:checked ~ label,
+    .rating_modify label:hover {
+        color: #f39c12;
+    }
+    .form-options{
+        display: flex;
+        justify-content: space-around;
+    }.container{
+        display: flex;
+        justify-content: space-between;
+    }
+    .container > h2{
+        display:inline;
+    }
+    .add{
+        display: flex;
+        justify-content: center;
+    }a{
+        margin-top: 19px;
+    }
